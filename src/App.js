@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Displayyy from './Components/Displayyy';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css'
+
+import calc from './solution/calc';
+
+import Btnpannel from './Components/btnpannel';
+
+export class App extends Component {
+
+
+  state = {
+    total : null,
+    next :  null,
+    operation : null,
+  }
+
+  handleClick = bname => {
+    this.setState (calc(this.state,bname))
+  }
+
+
+
+
+
+  render() {
+    return (
+      <div className="component-app frame">
+        <Displayyy value = {this.state.next || this.state.total || '0'} />
+
+        <Btnpannel clickHandler={this.handleClick}></Btnpannel>
+
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
